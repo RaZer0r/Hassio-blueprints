@@ -40,31 +40,31 @@ trigger:
     device_id: !input button_device
     domain: mqtt
     type: action
-    subtype: off
+    subtype: "off"
     id: "off"
   - platform: device
     device_id: !input button_device
     domain: mqtt
     type: action
-    subtype: on
+    subtype: "on"
     id: "on"
   - platform: device
     device_id: !input button_device
     domain: mqtt
     type: action
-    subtype: brightness_move_up
+    subtype: "brightness_move_up"
     id: "brightness-up"
   - platform: device
     device_id: !input button_device
     domain: mqtt
     type: action
-    subtype: brightness_move_down
+    subtype: "brightness_move_down"
     id: "brightness-down"
   - platform: device
     device_id: !input button_device
     domain: mqtt
     type: action
-    subtype: brightness_stop
+    subtype: "brightness_stop"
     id: "brightness-stop"
 
 action:
@@ -85,7 +85,9 @@ action:
               transition: !input transition_time
       - conditions:
           - condition: trigger
-            id: "brightness-up"
+            id:
+              - "brightness-up"
+              - "brightness-stop"
         sequence:
           - repeat:
               until:
@@ -102,14 +104,15 @@ action:
                     seconds: !input step_delay
       - conditions:
           - condition: trigger
-            id: "brightness-down"
+            id:
+              - "brightness-down"
+              - "brightness-stop"
         sequence:
           - repeat:
               until:
                 - condition: trigger
                   id:
                     - "brightness-stop"
-                    - "brightness-down"
               sequence:
                 - service: light.turn_on
                   target: !input target_lights
