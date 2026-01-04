@@ -8,10 +8,8 @@ blueprint:
       description: Select the button to control the lights
       selector:
         device:
-          integration: mqtt
-          manufacturer: IKEA
-          capabilities:
-            - trigger
+          - integration: mqtt
+          - manufacturer: "IKEA"
     target_lights:
       name: Lights to Control
       description: Lights to control with this button
