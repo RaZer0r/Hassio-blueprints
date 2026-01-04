@@ -9,6 +9,8 @@ blueprint:
       selector:
         device:
           integration: mqtt
+          capabilities:
+            - trigger
     target_lights:
       name: Lights to Control
       description: Lights to control with this button
