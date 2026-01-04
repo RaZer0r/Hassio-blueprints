@@ -1,5 +1,5 @@
 blueprint:
-  name: Button Controlled Lights
+  name: "[Z2M] E1743 ikea"
   description: Control lights with a button including brightness up/down, on/off, and adjustable delay.
   domain: automation
   input:
