@@ -9,6 +9,7 @@ blueprint:
       selector:
         device:
           integration: mqtt
+          manufacturer: "IKEA"
           capabilities:
             - trigger
     target_lights:
