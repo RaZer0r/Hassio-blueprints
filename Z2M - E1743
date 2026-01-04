@@ -41,43 +41,43 @@ trigger:
     domain: mqtt
     type: action
     subtype: off
-    id: off
+    id: "off"
   - platform: device
     device_id: !input button_device
     domain: mqtt
     type: action
     subtype: on
-    id: on
+    id: "on"
   - platform: device
     device_id: !input button_device
     domain: mqtt
     type: action
     subtype: brightness_move_up
-    id: brightness-up
+    id: "brightness-up"
   - platform: device
     device_id: !input button_device
     domain: mqtt
     type: action
     subtype: brightness_move_down
-    id: brightness-down
+    id: "brightness-down"
   - platform: device
     device_id: !input button_device
     domain: mqtt
     type: action
     subtype: brightness_stop
-    id: brightness-stop
+    id: "brightness-stop"
 
 action:
   - choose:
       - conditions:
           - condition: trigger
-            id: off
+            id: "off"
         sequence:
           - service: light.turn_off
             target: !input target_lights
       - conditions:
           - condition: trigger
-            id: on
+            id: "on"
         sequence:
           - service: light.turn_on
             target: !input target_lights
@@ -85,13 +85,13 @@ action:
               transition: !input transition_time
       - conditions:
           - condition: trigger
-            id: brightness-up
+            id: "brightness-up"
         sequence:
           - repeat:
               until:
                 - condition: trigger
                   id:
-                    - brightness-stop
+                    - "brightness-stop"
               sequence:
                 - service: light.turn_on
                   target: !input target_lights
@@ -102,14 +102,14 @@ action:
                     seconds: !input step_delay
       - conditions:
           - condition: trigger
-            id: brightness-down
+            id: "brightness-down"
         sequence:
           - repeat:
               until:
                 - condition: trigger
                   id:
-                    - brightness-stop
-                    - brightness-down
+                    - "brightness-stop"
+                    - "brightness-down"
               sequence:
                 - service: light.turn_on
                   target: !input target_lights
