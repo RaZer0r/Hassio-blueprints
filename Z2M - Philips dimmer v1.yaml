@@ -40,25 +40,25 @@ trigger:
     device_id: !input button_device
     domain: mqtt
     type: action
-    subtype: "off"
+    subtype: "off_press"
     id: "off"
   - platform: device
     device_id: !input button_device
     domain: mqtt
     type: action
-    subtype: "on"
+    subtype: "on_press"
     id: "on"
   - platform: device
     device_id: !input button_device
     domain: mqtt
     type: action
-    subtype: "brightness_move_up"
+    subtype: "up_press"
     id: "brightness-up"
   - platform: device
     device_id: !input button_device
     domain: mqtt
     type: action
-    subtype: "brightness_move_down"
+    subtype: "down_press"
     id: "brightness-down"
   - platform: device
     device_id: !input button_device
