@@ -65,13 +65,13 @@ trigger:
     domain: mqtt
     type: action
     subtype: "down_press_release"
-    id: "brightness-stop"
+    id: "brightness-down-stop"
   - platform: device
     device_id: !input button_device
     domain: mqtt
     type: action
     subtype: "up_press_release"
-    id: "brightness-stop"
+    id: "brightness-up-stop"
     
 action:
   - choose:
@@ -93,13 +93,13 @@ action:
           - condition: trigger
             id:
               - "brightness-up"
-              - "brightness-stop"
+              - "brightness-up-stop"
         sequence:
           - repeat:
               until:
                 - condition: trigger
                   id:
-                    - "brightness-stop"
+                    - "brightness-up-stop"
               sequence:
                 - service: light.turn_on
                   target: !input target_lights
@@ -112,13 +112,13 @@ action:
           - condition: trigger
             id:
               - "brightness-down"
-              - "brightness-stop"
+              - "brightness-down-stop"
         sequence:
           - repeat:
               until:
                 - condition: trigger
                   id:
-                    - "brightness-stop"
+                    - "brightness-down-stop"
               sequence:
                 - service: light.turn_on
                   target: !input target_lights
