@@ -64,9 +64,15 @@ trigger:
     device_id: !input button_device
     domain: mqtt
     type: action
-    subtype: "brightness_stop"
+    subtype: "down_press_release"
     id: "brightness-stop"
-
+  - platform: device
+    device_id: !input button_device
+    domain: mqtt
+    type: action
+    subtype: "up_press_release"
+    id: "brightness-stop"
+    
 action:
   - choose:
       - conditions:
